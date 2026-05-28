@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: estatelead-pro
+    env: node
+    plan: free
+    rootDir: .
+    buildCommand: npm install --prefix server && npm install --prefix client && npm run build --prefix client
+    startCommand: npm start --prefix server
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CLIENT_URL
+        value: http://localhost:5173
+      - key: DB_FILE
+        value: ./data/estateleads.db
